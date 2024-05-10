@@ -10,7 +10,7 @@ with open(csvpath) as csvfile:
 
     total_votes = 0
     #create dictionary to hold canidate scores
-    canidate_store = {}
+    candidate_store = {}
     
     
     for row in csvreader:
@@ -20,17 +20,17 @@ with open(csvpath) as csvfile:
     # Create list of canidates csv, then add rows each canidate name shows
         #Print(canidate,num_vote)
 
-        canidate = row[2]
+        candidate = row[2]
         
-        if (canidate in canidate_store):
+        if (candidate in candidate_store):
            
-            canidate_store[canidate] = canidate_store[canidate] + 1
+            candidate_store[candidate] = candidate_store[candidate] + 1
             
         else:
 
-            canidate_store[canidate] = 1
+            candidate_store[candidate] = 1
         
-        # For the total votes each candidate recieved / by total votes
+        
 
 
 output = f"""Election Results
@@ -40,9 +40,10 @@ Total Votes: {total_votes}
 max_can = ""
 max_votes = 0
 
-for name in canidate_store.keys():
-    perc_vote = (canidate_store[name] / total_votes) * 100  
-    votes = canidate_store[name] 
+for name in candidate_store.keys():
+    # For the total votes each candidate recieved / by total votes
+    perc_vote = (candidate_store[name] / total_votes) * 100  
+    votes = candidate_store[name] 
 
     line = f"{name}: {round(perc_vote, 3)}% ({votes})\n"
     output += line
